@@ -107,10 +107,3 @@ sequenceDiagram
 ```
 
 ---
-
-## 📌 Observações
-
-- Esse exemplo é **didático**: serve apenas para mostrar o conceito de **multithreading** em Python.
-- Em cenários reais, o comportamento pode variar dependendo do **sistema operacional** e do **agendador de threads** do Python.
-
----
