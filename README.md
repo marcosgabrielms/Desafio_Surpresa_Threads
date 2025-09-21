@@ -1,45 +1,60 @@
-# Demonstração de Multithreading em Python
+# 🧵 Demonstração de Multithreading em Python
 
-Este é um script simples em Python que demonstra a criação e execução de múltiplas threads de forma concorrente, utilizando a biblioteca padrão `threading`.
+Este projeto contém um **script em Python** que demonstra a criação e execução de múltiplas **threads** de forma concorrente, utilizando a biblioteca padrão [`threading`](https://docs.python.org/3/library/threading.html).
 
-O objetivo é mostrar como executar tarefas "ao mesmo tempo", com uma saída no console que evidencia a intercalação das operações de cada thread.
+O objetivo é evidenciar como tarefas podem ser executadas "ao mesmo tempo", com uma saída no console que mostra a intercalação das operações de cada thread.
+
+---
 
 ## ⚙️ Tecnologias Utilizadas
 
-* **Python 3**
-* **Módulo `threading`**: Para a criação e gerenciamento das threads.
-* **Módulo `time`**: Para usar a função `sleep()` e simular uma tarefa que leva tempo.
+- **Python 3**
+- **Módulo [`threading`]** → criação e gerenciamento das threads.
+- **Módulo [`time`]** → utilização de `sleep()` para simular tarefas demoradas.
 
-## 📖 Como Funciona
+---
 
-1.  **Função `worker`**: Uma função é definida para ser o alvo de cada thread. Ela simula uma tarefa que leva 5 segundos para ser concluída, imprimindo uma mensagem a cada segundo.
-2.  **Criação das Threads**: No bloco principal do script, um loop cria 3 instâncias da classe `threading.Thread`. Cada instância é configurada para executar a função `worker`.
-3.  **Início da Execução**: O método `.start()` é chamado em cada objeto de thread, o que agenda sua execução pelo sistema operacional. A partir daqui, as threads rodam concorrentemente.
-4.  **Sincronização**: O método `.join()` é chamado para cada thread. Isso faz com que o script principal pause e espere até que todas as threads tenham concluído suas tarefas antes de prosseguir e encerrar o programa.
+## 📖 Funcionamento
+
+1. **Função `worker`**  
+   Define a lógica executada por cada thread.  
+   Simula uma tarefa de **5 segundos**, imprimindo mensagens a cada iteração.
+
+2. **Criação das Threads**  
+   No bloco principal, são criadas **3 instâncias** de `threading.Thread`, cada uma configurada para rodar `worker`.
+
+3. **Execução Concorrente**  
+   O método `.start()` inicia as threads, que passam a rodar **em paralelo**.
+
+4. **Sincronização**  
+   O método `.join()` garante que o programa principal **aguarde a conclusão** de todas as threads antes de encerrar.
+
+---
 
 ## 🚀 Como Executar
 
 ### Pré-requisitos
-* Ter o [Python 3](https://www.python.org/downloads/) instalado.
+- Ter o [Python 3](https://www.python.org/downloads/) instalado.
 
 ### Passos
-1.  Clone o repositório:
-    ```sh
-    git clone [https://github.com/marcosgabrielms/Desafio_Surpresa_Threads.git](https://github.com/marcosgabrielms/Desafio_Surpresa_Threads.git)
-    ```
-2.  Navegue até a pasta do projeto:
-    ```sh
-    cd Desafio_Surpresa_Threads
-    ```
-3.  Execute o script Python:
-    ```sh
-    python multithread_example.py
-    ```
-   
+```sh
+# 1. Clone o repositório
+git clone https://github.com/marcosgabrielms/Desafio_Surpresa_Threads.git
+
+# 2. Entre no diretório do projeto
+cd Desafio_Surpresa_Threads
+
+# 3. Execute o script
+python multithread_example.py
+```
+
+---
 
 ## 🖥️ Saída Esperada
 
-A saída no terminal será semelhante a esta, mostrando claramente as mensagens das diferentes threads sendo impressas de forma intercalada, provando que elas estão rodando em paralelo.
+Ao rodar o script, o terminal exibirá mensagens semelhantes às abaixo.  
+Note como as execuções das **3 threads** se intercalam, evidenciando a concorrência:
+
 ```
 Main: Iniciando o programa e criando as threads...
 
@@ -63,3 +78,39 @@ Main: Todas as threads foram criadas. Aguardando a finalização delas...
 
 Main: Todas as threads finalizaram. Encerrando o programa.
 ```
+
+---
+
+## 🗂️ Diagrama de Execução
+
+```mermaid
+sequenceDiagram
+    participant Main as Main Thread
+    participant T1 as Thread 1
+    participant T2 as Thread 2
+    participant T3 as Thread 3
+
+    Main->>T1: Criação e start()
+    Main->>T2: Criação e start()
+    Main->>T3: Criação e start()
+
+    par Execução Concorrente
+        T1->>T1: Iteração 1...5
+        T2->>T2: Iteração 1...5
+        T3->>T3: Iteração 1...5
+    end
+
+    T1-->>Main: Finalização
+    T2-->>Main: Finalização
+    T3-->>Main: Finalização
+    Main->>Main: Encerrando programa
+```
+
+---
+
+## 📌 Observações
+
+- Esse exemplo é **didático**: serve apenas para mostrar o conceito de **multithreading** em Python.
+- Em cenários reais, o comportamento pode variar dependendo do **sistema operacional** e do **agendador de threads** do Python.
+
+---
