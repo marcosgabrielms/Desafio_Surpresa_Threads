@@ -33,9 +33,9 @@ O objetivo é mostrar como executar tarefas "ao mesmo tempo", com uma saída no 
     ```
 3.  Execute o script Python:
     ```sh
-    python multithread.py
+    python multithread_example.py
     ```
-    *(Assumindo que o nome do arquivo é `multithread.py`)*
+   
 
 ## 🖥️ Saída Esperada
 
